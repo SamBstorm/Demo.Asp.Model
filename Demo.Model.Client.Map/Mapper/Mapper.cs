@@ -48,7 +48,7 @@ namespace Demo.Model.Client.Map.Mapper
             {
                 FilmId = entity.Identifiant,
                 Title = entity.Titre,
-                MainActorId = entity.ActeurPrincipal.Identifiant,
+                MainActorId = entity.ActeurPrincipal?.Identifiant??0, //Coalesce mis en place pour satisfaire la démo, et laisser notre ServiceCreate enregistrer notre film, même sans acteur principal...
             };
         }
 

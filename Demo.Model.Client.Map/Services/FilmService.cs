@@ -1,10 +1,11 @@
-﻿using Demo.Model.Client.Wrap.Models;
+﻿using Demo.Model.Client.Map.Mapper;
+using Demo.Model.Client.Map.Models;
 using Demo.Model.Global.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Demo.Model.Client.Wrap.Services
+namespace Demo.Model.Client.Map.Services
 {
     public class FilmService : IFilmRepository<Film>
     {
@@ -17,7 +18,7 @@ namespace Demo.Model.Client.Wrap.Services
 
         public int Create(Film entity)
         {
-            return _repo.Create(entity.GetFilm());
+            return _repo.Create(entity.ToGlobal());
         }
 
         public bool Delete(int id)
@@ -27,7 +28,7 @@ namespace Demo.Model.Client.Wrap.Services
 
         public Film Get(int id)
         {
-            return new Film(_repo.Get(id));
+            return _repo.Get(id).ToClient();
         }
 
         public IEnumerable<Film> Get()
